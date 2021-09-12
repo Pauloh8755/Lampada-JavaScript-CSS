@@ -23,29 +23,27 @@ function lampadaInteira(){
 }
 function piscarLampada(){
     const botaoPiscar = document.getElementById("piscar")
-    if(botaoPiscar.textContent == "piscar"){
-        setInterval(ligarLampada, 500)
-        setInterval(desligarLampada, 1000)
+    if(botaoPiscar.textContent == "Piscar"){
+        idLigar = setInterval(ligarLampada, 500)
+        idDesligar = setInterval(desligarLampada, 1000)
+		botaoPiscar.textContent = "Parar"
     }
     else{
-        parar()
-        botaoPiscar.textContent = "piscar"
+        pararPiscar()
+        botaoPiscar.textContent = "Piscar"
     }
-    
 }
-function parar(){
-    
+function pararPiscar(){
+	clearInterval(idLigar)
+	clearInterval(idDesligar)
+	lampada.src = "img/desligada.jpg"
 }
  
-     
-
 //eventos
 document.getElementById("ligar").addEventListener("click", ligarLampada)
 document.getElementById("desligar").addEventListener("click", desligarLampada)
 document.getElementById("piscar").addEventListener("click", piscarLampada)
-document.getElementById("parar").addEventListener("click", parar)
+
 lampada.addEventListener("dblclick", quebrarLampada)
 lampada.addEventListener("mouseover", ligarLampada)
 lampada.addEventListener("mouseout", desligarLampada)
-
-
