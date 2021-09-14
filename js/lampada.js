@@ -1,7 +1,6 @@
 "use strict"
 const lampada = document.getElementById("lampada")
-let idLigar
-let idDesligar
+let idInterval
 
 //funções
 function ligarLampada(){
@@ -21,25 +20,36 @@ function lampadaInteira(){
     //utilizando includes para identificar se a lampada está inteira
     return lampada.src.includes("ligada")
 }
+function lampadaDesligada(){
+    return lampada.src.includes("desligada")
+}
+//function para trocar a imagem
+function trocarImagem(){
+    if(lampadaDesligada()){
+        ligarLampada()
+    }
+    else{
+        desligarLampada()
+    }
+}
+//function para piscar lampada
 function piscarLampada(){
-    const botaoPiscar = document.getElementById("piscar")
-    if(botaoPiscar.textContent == "Piscar"){
-        idLigar = setInterval(ligarLampada, 500)
-        idDesligar = setInterval(desligarLampada, 1000)
-		botaoPiscar.textContent = "Parar"
+    const piscar =  document.getElementById("piscar")
+    if(piscar.textContent == "piscar"){
+        idInterval = setInterval(trocarImagem,1000)
+        piscar.textContent = "parar"
     }
     else{
         pararPiscar()
-        botaoPiscar.textContent = "Piscar"
+        piscar.textContent = "piscar"
     }
 }
 function pararPiscar(){
-	clearInterval(idLigar)
-	clearInterval(idDesligar)
-	lampada.src = "img/desligada.jpg"
+	clearInterval(idInterval)
 }
  
-//eventos
+//eventos -- (addEventListerner - recebe dois parametros(ação, callback))
+//callback: uma função passada como parametro
 document.getElementById("ligar").addEventListener("click", ligarLampada)
 document.getElementById("desligar").addEventListener("click", desligarLampada)
 document.getElementById("piscar").addEventListener("click", piscarLampada)
