@@ -35,13 +35,13 @@ function trocarImagem(){
 //function para piscar lampada
 function piscarLampada(){
     const piscar =  document.getElementById("piscar")
-    if(piscar.textContent == "piscar"){
+    if(piscar.textContent == "Piscar"){
         idInterval = setInterval(trocarImagem,1000)
-        piscar.textContent = "parar"
+        piscar.textContent = "Parar"
     }
     else{
         pararPiscar()
-        piscar.textContent = "piscar"
+        piscar.textContent = "Piscar"
     }
 }
 function pararPiscar(){
